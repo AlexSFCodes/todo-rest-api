@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16        # versión de PostgreSQL
+    container_name: tasks_db  # nombre del contenedor
+    restart: always
+    ports:
+      - "5432:5432"           # puerto local:puerto del contenedor
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: tasksdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # guarda los datos aunque apagues el contenedor
+
+volumes:
+  postgres_data:
