@@ -1,26 +1,17 @@
 import { Router } from "express"
-import { getTasks } from "./auth.controller"
+import { register, login } from "./auth.controller"           // auth
+import { getTasks, createTask, deleteTask } from "../tasks/tasks.controller"  // tareas
 import { verifyToken } from "../../middlewares/auth.middleware"
 
 const router = Router()
 
-router.get("/tasks", verifyToken, getTasks)
+// ── PUBLIC ROUTES ──────────────────
+router.post("/auth/register", register)
+router.post("/auth/login",    login)
 
+// ── PROTECTED ROUTES ────────────────
+router.get("/tasks",       verifyToken, getTasks)
+router.post("/tasks",      verifyToken, createTask)
+router.delete("/tasks/:id",verifyToken, deleteTask)
 
-router.post("/auth/register", (req, res) => {
-  res.send("Register");
-});
-
-router.post("/auth/login", (req, res) => {
-  res.send("Login");
-});
-
-
-router.get("/tasks/:id", (req, res) => {
-  res.send("Get task by id");
-});
-router.delete("/tasks/:id", (req, res) => {
-  res.send("Get task by id");
-});
-
-export default router;
+export default router
