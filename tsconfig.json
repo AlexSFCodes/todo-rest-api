@@ -1,6 +1,7 @@
 {
+
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
     "typeRoots": ["./src/types", "./node_modules/@types"],
     "module": "commonjs",
@@ -16,7 +17,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*"]  // ← le dice a TypeScript dónde están los archivos
+  "include": ["src/**/*", "index.ts"] // ← le dice a TypeScript dónde están los archivos
   ,"ts-node": {
     "files": true
   }
