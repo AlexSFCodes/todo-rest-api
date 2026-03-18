@@ -6,7 +6,10 @@ const app = express()  // ← primero declara app
 
 // Middlewares globales
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: [
+        "http://localhost:5173",
+        "https://alexsfcodes.github.io"  // ← tu dominio de GitHub Pages
+    ]
 }))
 app.use(express.json())
 
