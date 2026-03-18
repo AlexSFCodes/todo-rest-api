@@ -1,9 +1,13 @@
 import express from "express"
+import cors from "cors"
 import authRoutes from "./src/modules/auth/auth.routes"
 
-const app = express()
+const app = express()  // ← primero declara app
 
 // Middlewares globales
+app.use(cors({
+    origin: "http://localhost:5173"
+}))
 app.use(express.json())
 
 // Rutas

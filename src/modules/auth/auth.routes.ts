@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { register, login } from "./auth.controller"           // auth
-import { getTasks, createTask, deleteTask } from "../tasks/tasks.controller"  // tareas
+import { getTasks, createTask, deleteTask,updateTask } from "../tasks/tasks.controller"  // tareas
 import { verifyToken } from "../../middlewares/auth.middleware"
 
 const router = Router()
@@ -10,6 +10,7 @@ router.post("/auth/register", register)
 router.post("/auth/login",    login)
 
 // ── PROTECTED ROUTES ────────────────
+router.put("/tasks/:id", verifyToken, updateTask)
 router.get("/tasks",       verifyToken, getTasks)
 router.post("/tasks",      verifyToken, createTask)
 router.delete("/tasks/:id",verifyToken, deleteTask)

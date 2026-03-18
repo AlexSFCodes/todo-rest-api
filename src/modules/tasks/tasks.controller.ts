@@ -57,3 +57,23 @@ export const deleteTask = async (req: Request, res: Response) => {
         return res.status(500).json({ message: "Server error" })
     }
 }
+
+export const updateTask = async (req: Request, res: Response) => {
+    try {
+        const userId = req.user?.id
+        if (!userId) return res.status(401).json({ message: "No autorizado" })
+
+        const { id } = req.params
+        const { description, done } = req.body
+
+        const task = await prisma.task.update({
+            where: { id },
+            data: { description, done }
+        })
+
+        return res.status(200).json(task)
+    } catch (error) {
+        console.log("ERROR:", error)  // ← agrega esto
+        return res.status(500).json({ message: "Server error" })
+    }
+}
